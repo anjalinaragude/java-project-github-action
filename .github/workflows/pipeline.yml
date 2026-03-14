@@ -131,6 +131,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ./Dockerfile
+          file: ./src/Dockerfile
           push: true
           tags: anjalinaragude/bankapp:latest
