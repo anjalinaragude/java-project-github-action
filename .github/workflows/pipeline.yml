@@ -155,5 +155,5 @@ jobs:
       - name: Test kubectl
         run: kubectl get nodes
 
-      - name: Deploy to Kubernetes
+      - name: Deploy to Kubernetes 
         run: kubectl apply -f src/ds.yml
