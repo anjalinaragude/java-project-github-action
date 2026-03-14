@@ -1,4 +1,4 @@
-name: CI-CD pipeline 
+name: CI-CD pipeline
 
 on:
   push:
@@ -82,7 +82,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup JDK 17
+      - name: Setup JDK
         uses: actions/setup-java@v4
         with:
           java-version: "17"
@@ -135,7 +135,6 @@ jobs:
           push: true
           tags: anjalinaragude/bankapp:latest
 
-    
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -143,7 +142,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-           # 8️⃣ Install kubectl
       - name: Install kubectl
         run: |
           curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
@@ -151,21 +149,11 @@ jobs:
           sudo mv kubectl /usr/local/bin/
           kubectl version --client
 
-             # 9️⃣ Update kubeconfig for EKS
       - name: Update kubeconfig
         run: aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name action-eks-cluster
- 
-  # 🔟 Verify cluster access
+
       - name: Test kubectl
         run: kubectl get nodes
 
-   # 1️⃣5️⃣ Deploy to EKS
       - name: Deploy to Kubernetes
-       run: kubectl apply -f scr/ds.yml
-       
-
-
-
-
-
-          
+        run: kubectl apply -f src/ds.yml
