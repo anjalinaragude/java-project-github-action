@@ -153,7 +153,7 @@ jobs:
 
              # 9️⃣ Update kubeconfig for EKS
       - name: Update kubeconfig
-        run: aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name actions-eks-cluster
+        run: aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name action-eks-cluster
  
   # 🔟 Verify cluster access
       - name: Test kubectl
