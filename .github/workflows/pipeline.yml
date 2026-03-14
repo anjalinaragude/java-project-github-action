@@ -35,7 +35,7 @@ security-scan:
 runs-on: ubuntu-latest
 needs: build
 
-```
+
 steps:
   - uses: actions/checkout@v4
 
@@ -50,13 +50,11 @@ steps:
 
   - name: Trivy Scan
     run: trivy fs .
-```
 
 test:
 runs-on: self-hosted
 needs: security-scan
 
-```
 steps:
   - uses: actions/checkout@v4
 
@@ -68,13 +66,12 @@ steps:
 
   - name: Run Tests
     run: mvn test
-```
 
 sonar:
 runs-on: ubuntu-latest
 needs: test
 
-```
+
 steps:
   - uses: actions/checkout@v4
 
@@ -95,13 +92,12 @@ steps:
         -Dsonar.organization=anjalinaragude
     env:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-```
+
 
 docker-build:
 runs-on: ubuntu-latest
 needs: sonar
 
-```
 steps:
   - name: Checkout Code
     uses: actions/checkout@v4
@@ -128,7 +124,6 @@ steps:
       file: ./Dockerfile
       push: true
       tags: anjalinaragude/bankapp:latest
-```
 
 deploy:
 runs-on: ubuntu-latest
