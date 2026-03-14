@@ -160,9 +160,8 @@ jobs:
         run: kubectl get nodes
 
    # 1️⃣5️⃣ Deploy to EKS
-      - name: Deploy to EKS
-        run: |
-          kubectl apply -f  src/ds.yaml
+      - name: Deploy to Kubernetes
+       run: kubectl apply -f scr/ds.yml
          
 
 
