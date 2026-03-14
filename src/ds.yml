@@ -1,4 +1,3 @@
-# Java Application Deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,20 +13,19 @@ spec:
         app: bankapp
     spec:
       containers:
-      - name: bankapp
-        image:  anjalinaragude/bankapp:latest
-        ports:
-        - containerPort: 8080
-      
+        - name: bankapp
+          image: anjalinaragude/bankapp:latest
+          ports:
+            - containerPort: 8080
 ---
-# Bank Application Service
 apiVersion: v1
 kind: Service
 metadata:
   name: bankapp-service
 spec:
   type: LoadBalancer
+  selector:
+    app: bankapp
   ports:
-  - port: 80
-    targetPort: 8080
-  
+    - port: 80          # External ELB port
+      targetPort: 8080  # Container port
