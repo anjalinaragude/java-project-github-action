@@ -6,8 +6,7 @@ ENV APP_HOME /usr/src/app
 WORKDIR $APP_HOME
 
 # Copy JAR built by Maven
-COPY target/*.jar app.jar
-
+COPY app/*.jar app.jar
 # Expose port
 EXPOSE 8080
 
